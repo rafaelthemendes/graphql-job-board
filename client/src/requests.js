@@ -59,6 +59,10 @@ export async function loadCompanyById(companyId) {
       id
       name
       description
+      jobs {
+        id
+        title
+      }
     }
   }`;
   const variables = {
