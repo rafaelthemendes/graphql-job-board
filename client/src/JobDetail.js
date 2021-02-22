@@ -12,9 +12,7 @@ export const JobDetail = ({ match }) => {
     })();
   }, [match.params.jobId]);
 
-  if (!job) {
-    return null;
-  }
+  if (!job) return null;
 
   return (
     <div>

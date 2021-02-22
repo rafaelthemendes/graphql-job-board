@@ -10,8 +10,10 @@ async function graphqlRequest(query, variables = {}) {
     }),
   });
   const responseBody = await response.json();
-  if(responseBody.errors) {
-    const message = responseBody.errors.map(error => error.message).join('\n');
+  if (responseBody.errors) {
+    const message = responseBody.errors
+      .map((error) => error.message)
+      .join("\n");
     throw new Error(message);
   }
   return responseBody.data;
@@ -49,4 +51,19 @@ export async function loadJobById(jobId) {
   };
   const { job } = await graphqlRequest(query, variables);
   return job;
+}
+
+export async function loadCompanyById(companyId) {
+  const query = `query LoadCompany($id: ID!) {
+    company(id: $id) {
+      id
+      name
+      description
+    }
+  }`;
+  const variables = {
+    id: companyId,
+  };
+  const { company } = await graphqlRequest(query, variables);
+  return company;
 }
