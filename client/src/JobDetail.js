@@ -10,7 +10,7 @@ export const JobDetail = ({ match }) => {
       const data = await loadJobById(match.params.jobId);
       setJob(data);
     })();
-  }, []);
+  }, [match.params.jobId]);
 
   if (!job) {
     return null;
